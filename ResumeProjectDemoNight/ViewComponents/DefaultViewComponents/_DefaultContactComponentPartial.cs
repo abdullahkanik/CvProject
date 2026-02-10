@@ -2,11 +2,11 @@
 
 namespace ResumeProjectDemoNight.ViewComponents.DefaultViewComponents
 {
-    public class _DefaultContactComponentPartial:ViewComponent
-    {
-        public IViewComponentResult Invoke()
-        {
-            return View();
-        }
-    }
+	public class _DefaultContactComponentPartial : ViewComponent
+	{
+		public IViewComponentResult Invoke()
+		{
+			return View();
+		}
+	}
 }

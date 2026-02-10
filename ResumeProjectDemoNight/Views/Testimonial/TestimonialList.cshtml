@@ -1,0 +1,88 @@
+﻿@model List<ResumeProjectDemoNight.Entities.Testimonial>
+
+
+@{
+    ViewData["Title"] = "TestimonialList";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="flex-1 overflow-y-auto p-8">
+    <div class="max-w-6xl mx-auto space-y-8">
+
+        <!-- Page Heading -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+                <h3 class="text-3xl font-black tracking-tight">Referans Yorumları</h3>
+                <p class="text-slate-500 dark:text-[#9db2b9] mt-1">
+                    Yorum içeriklerinizi düzenleyebilir, yeni yorum ekleyebilirsiniz.
+                </p>
+            </div>
+
+            <a href="/Testimonial/CreateTestimonial/"
+               class="flex items-center gap-2 px-5 py-2.5 bg-primary text-background-dark rounded-lg font-bold text-sm hover:opacity-90 transition-opacity">
+                <span class="material-symbols-outlined text-[20px]">add</span>
+                Yeni Yorum Girişi
+            </a>
+        </div>
+
+        <!-- CARDS GRID -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            @foreach (var item in Model)
+            {
+                <div class="bg-white dark:bg-[#111618] rounded-xl border border-slate-200 dark:border-[#3b4d54] shadow-sm overflow-hidden">
+
+                    <!-- Card Header -->
+                    <div class="p-5 flex items-start justify-between gap-4">
+                        <div class="flex items-center gap-3 min-w-0">
+                            <img src="@(string.IsNullOrEmpty(item.ImageUrl) ? "/images/default-avatar.png" : item.ImageUrl)"
+                                 alt="@item.NameSurname"
+                                 class="w-12 h-12 rounded-full object-cover border border-slate-200 dark:border-[#3b4d54]" />
+
+                            <div class="min-w-0">
+                                <p class="font-black text-sm truncate">@item.NameSurname</p>
+                                <p class="text-xs text-slate-500 dark:text-[#9db2b9] truncate">
+                                    @item.Title
+                                </p>
+                            </div>
+                        </div>
+
+                      
+                    </div>
+
+                    <!-- Comment -->
+                    <div class="px-5 pb-5">
+                        <p class="text-sm text-slate-700 dark:text-[#c7d6db]"
+                           title="@item.Comment"
+                           style="display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden;">
+                            @item.Comment
+                        </p>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="px-5 py-4 border-t border-slate-200 dark:border-[#3b4d54] flex items-center justify-between">
+
+
+                        <div class="flex items-center gap-2">
+                            <a href="/Testimonial/UpdateTestimonial/@item.TestimonialId"
+                               class="inline-flex items-center justify-center w-9 h-9 bg-green-500/15 hover:bg-green-500/25 text-green-500 rounded-lg transition-colors"
+                               title="Güncelle">
+                                <span class="material-symbols-outlined text-[20px]">edit</span>
+                            </a>
+
+                            <a href="/Testimonial/DeleteTestimonial/@item.TestimonialId"
+                               class="inline-flex items-center justify-center w-9 h-9 bg-red-500/15 hover:bg-red-500/25 text-red-500 rounded-lg transition-colors"
+                               title="Sil">
+                                <span class="material-symbols-outlined text-[20px]">delete</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+
+        <!-- Footer -->
+
+
+    </div>
+</div>

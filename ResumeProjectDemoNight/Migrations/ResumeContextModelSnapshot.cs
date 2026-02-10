@@ -17,7 +17,7 @@ namespace ResumeProjectDemoNight.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.11")
+                .HasAnnotation("ProductVersion", "9.0.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -42,6 +42,10 @@ namespace ResumeProjectDemoNight.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("AboutId");
 
                     b.ToTable("Abouts");
@@ -62,6 +66,36 @@ namespace ResumeProjectDemoNight.Migrations
                     b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("ResumeProjectDemoNight.Entities.Dashboard", b =>
+                {
+                    b.Property<int>("DashboardId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DashboardId"));
+
+                    b.Property<int?>("AboutId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ExperienceCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SkillCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalMessages")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UnreadMessages")
+                        .HasColumnType("int");
+
+                    b.HasKey("DashboardId");
+
+                    b.HasIndex("AboutId");
+
+                    b.ToTable("Dashboard");
                 });
 
             modelBuilder.Entity("ResumeProjectDemoNight.Entities.Experience", b =>
@@ -101,6 +135,9 @@ namespace ResumeProjectDemoNight.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MessageId"));
 
+                    b.Property<int?>("DashboardId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -124,6 +161,8 @@ namespace ResumeProjectDemoNight.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("MessageId");
+
+                    b.HasIndex("DashboardId");
 
                     b.ToTable("Messages");
                 });
@@ -177,6 +216,51 @@ namespace ResumeProjectDemoNight.Migrations
                     b.ToTable("Services");
                 });
 
+            modelBuilder.Entity("ResumeProjectDemoNight.Entities.Skill", b =>
+                {
+                    b.Property<int>("SkillId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SkillId"));
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Value")
+                        .HasColumnType("int");
+
+                    b.HasKey("SkillId");
+
+                    b.ToTable("Skills");
+                });
+
+            modelBuilder.Entity("ResumeProjectDemoNight.Entities.SocialMedia", b =>
+                {
+                    b.Property<int>("SocialMediaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SocialMediaId"));
+
+                    b.Property<string>("Icon")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SocialMediaId");
+
+                    b.ToTable("SocialMedias");
+                });
+
             modelBuilder.Entity("ResumeProjectDemoNight.Entities.Testimonial", b =>
                 {
                     b.Property<int>("TestimonialId")
@@ -204,6 +288,27 @@ namespace ResumeProjectDemoNight.Migrations
                     b.HasKey("TestimonialId");
 
                     b.ToTable("Testimonials");
+                });
+
+            modelBuilder.Entity("ResumeProjectDemoNight.Entities.Dashboard", b =>
+                {
+                    b.HasOne("ResumeProjectDemoNight.Entities.About", "About")
+                        .WithMany()
+                        .HasForeignKey("AboutId");
+
+                    b.Navigation("About");
+                });
+
+            modelBuilder.Entity("ResumeProjectDemoNight.Entities.Message", b =>
+                {
+                    b.HasOne("ResumeProjectDemoNight.Entities.Dashboard", null)
+                        .WithMany("RecentMessages")
+                        .HasForeignKey("DashboardId");
+                });
+
+            modelBuilder.Entity("ResumeProjectDemoNight.Entities.Dashboard", b =>
+                {
+                    b.Navigation("RecentMessages");
                 });
 #pragma warning restore 612, 618
         }

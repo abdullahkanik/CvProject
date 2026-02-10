@@ -1,0 +1,213 @@
+﻿﻿
+@model ResumeProjectDemoNight.Entities.Dashboard
+
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="flex-1 overflow-y-auto px-6 sm:px-10 py-10 flex justify-center">
+    <div class="w-full max-w-7xl space-y-8">
+
+        <!-- Başlık -->
+        <div>
+            <h2 class="text-3xl font-black tracking-tight">Dashboard</h2>
+        </div>
+
+        <!-- 4 Sayaç Kartı -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="rounded-2xl p-6 border border-slate-200 dark:border-[#3b4d54] bg-white dark:bg-[#111618] shadow-sm">
+                <div class="flex items-center justify-between">
+                    <p class="text-sm font-semibold text-slate-500 dark:text-[#9db2b9]">Toplam Mesaj</p>
+                    <span class="material-symbols-outlined text-primary">mail</span>
+                </div>
+                <p class="text-3xl font-black mt-2">@Model.TotalMessages</p>
+            </div>
+
+            <div class="rounded-2xl p-6 border border-slate-200 dark:border-[#3b4d54] bg-white dark:bg-[#111618] shadow-sm">
+                <div class="flex items-center justify-between">
+                    <p class="text-sm font-semibold text-slate-500 dark:text-[#9db2b9]">Okunmamış</p>
+                    <span class="material-symbols-outlined text-primary">mark_email_unread</span>
+                </div>
+                <p class="text-3xl font-black mt-2">@Model.UnreadMessages</p>
+            </div>
+
+            <div class="rounded-2xl p-6 border border-slate-200 dark:border-[#3b4d54] bg-white dark:bg-[#111618] shadow-sm">
+                <div class="flex items-center justify-between">
+                    <p class="text-sm font-semibold text-slate-500 dark:text-[#9db2b9]">Deneyim</p>
+                    <span class="material-symbols-outlined text-primary">history_edu</span>
+                </div>
+                <p class="text-3xl font-black mt-2">@Model.ExperienceCount</p>
+                <a href="/Experience/ExperienceList" class="text-xs font-bold text-primary hover:underline">Yönet</a>
+            </div>
+
+            <div class="rounded-2xl p-6 border border-slate-200 dark:border-[#3b4d54] bg-white dark:bg-[#111618] shadow-sm">
+                <div class="flex items-center justify-between">
+                    <p class="text-sm font-semibold text-slate-500 dark:text-[#9db2b9]">Yetenek</p>
+                    <span class="material-symbols-outlined text-primary">code</span>
+                </div>
+                <p class="text-3xl font-black mt-2">@Model.SkillCount</p>
+                <a href="/Skill/SkillList" class="text-xs font-bold text-primary hover:underline">Yönet</a>
+            </div>
+        </div>
+
+        <!-- Alt: Mesajlar + Sağ Panel -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+
+            <!-- Mesajlar -->
+            <div class="lg:col-span-3 rounded-2xl border border-slate-200 dark:border-[#3b4d54] bg-white dark:bg-[#111618] overflow-hidden shadow-sm">
+                <div class="px-6 py-5 border-b border-slate-200 dark:border-[#3b4d54] flex items-center justify-between">
+                    <h3 class="text-lg font-black">Gelen Mesajlar</h3>
+                    <a href="/Message/MessageList" class="text-sm font-bold text-primary hover:underline">Tümünü Gör</a>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead class="bg-slate-50 dark:bg-[#0f1416] border-b border-slate-200 dark:border-[#3b4d54]">
+                            <tr>
+                                <th class="px-6 py-4 text-sm font-bold text-slate-600 dark:text-white w-[22%]">Gönderen</th>
+                                <th class="px-6 py-4 text-sm font-bold text-slate-600 dark:text-white">Konu / Mesaj</th>
+                                <th class="px-6 py-4 text-sm font-bold text-slate-600 dark:text-white w-[18%]">Tarih</th>
+                                <th class="px-6 py-4 text-sm font-bold text-slate-600 dark:text-white w-[14%] text-right">Durum</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="divide-y divide-slate-100 dark:divide-[#22303a]">
+                            @if (Model.RecentMessages != null && Model.RecentMessages.Count > 0)
+                            {
+                                foreach (var msg in Model.RecentMessages)
+                                {
+                                    <tr class="hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+                                        <td class="px-6 py-4 align-top">
+                                            <div class="font-semibold text-slate-900 dark:text-white">@msg.NameSurname</div>
+                                            <div class="text-xs text-slate-500 dark:text-[#9db2b9]">@msg.Email</div>
+                                        </td>
+
+                                        <td class="px-6 py-4">
+                                            <div class="text-sm font-bold text-slate-900 dark:text-white"
+                                                 style="display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;">
+                                                @msg.Subject
+                                            </div>
+                                            <div class="text-sm text-slate-700 dark:text-[#c7d6db]"
+                                                 style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">
+                                                @msg.MessageDetail
+                                            </div>
+                                        </td>
+
+                                        <td class="px-6 py-4 align-top">
+                                            <span class="text-sm text-slate-500 dark:text-[#9db2b9]">
+                                                @msg.SendDate.ToString("dd.MM.yyyy HH:mm")
+                                            </span>
+                                        </td>
+
+                                        <td class="px-6 py-4 align-top text-right">
+                                            @if (!msg.IsRead)
+                                            {
+                                                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary">
+                                                    Okunmadı
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-slate-100 dark:bg-[#0f1416] text-slate-600 dark:text-[#c7d6db]">
+                                                    Okundu
+                                                </span>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td class="px-6 py-8 text-sm text-slate-500 dark:text-[#9db2b9]" colspan="4">
+                                        Henüz mesaj yok.
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Sağ: Hakkımda + Hızlı İşlemler -->
+            <div class="space-y-6">
+
+                <!-- Hakkımda kart -->
+                <div class="rounded-2xl border border-slate-200 dark:border-[#3b4d54] bg-white dark:bg-[#111618] overflow-hidden shadow-sm">
+                    <div class="px-6 py-5 border-b border-slate-200 dark:border-[#3b4d54] flex items-center justify-between">
+                        <h3 class="text-lg font-black">Hakkımda</h3>
+                        <a href="/About/UpdateAbout" class="text-sm font-bold text-primary hover:underline">Düzenle</a>
+                    </div>
+
+                    <div class="p-6">
+                        @if (Model.About != null)
+                        {
+                            <div class="flex items-center gap-4">
+                                <img src="@Model.About.ImageUrl"
+                                     class="w-14 h-14 rounded-xl object-cover border border-slate-200 dark:border-[#3b4d54]"
+                                     alt="about" />
+                                <div>
+                                    <p class="font-black">@Model.About.NameSurname</p>
+                                    <p class="text-sm font-semibold text-primary">@Model.About.Title</p>
+                                </div>
+                            </div>
+
+                            <p class="mt-4 text-sm text-slate-700 dark:text-[#c7d6db]"
+                               style="display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;">
+                                @Model.About.Description
+                            </p>
+
+                            <div class="mt-5">
+                                <a href="/About/UpdateAbout/@Model.About.AboutId"
+                                   class="inline-flex justify-center w-full px-4 py-2 rounded-lg bg-primary text-background-dark font-bold text-sm hover:opacity-90 transition">
+                                    Güncelle
+                                </a>
+                            </div>
+                        }
+                        else
+                        {
+                            <p class="text-sm text-slate-500 dark:text-[#9db2b9]">Hakkımda kaydı yok.</p>
+                            <a href="/About/CreateAbout"
+                               class="mt-4 inline-flex justify-center w-full px-4 py-2 rounded-lg bg-primary text-background-dark font-bold text-sm hover:opacity-90 transition">
+                                Oluştur
+                            </a>
+                        }
+                    </div>
+                </div>
+
+                <!-- Hızlı İşlemler -->
+                <div class="rounded-2xl border border-slate-200 dark:border-[#3b4d54] bg-white dark:bg-[#111618] overflow-hidden shadow-sm">
+                    <div class="px-6 py-5 border-b border-slate-200 dark:border-[#3b4d54]">
+                        <h3 class="text-lg font-black">Hızlı İşlemler</h3>
+                        <p class="text-xs text-slate-500 dark:text-[#9db2b9] mt-1">Tek tıkla ekleme yap</p>
+                    </div>
+
+                    <div class="p-6 space-y-3">
+                        <a href="/Experience/CreateExperience"
+                           class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary text-background-dark font-black text-sm hover:opacity-90 transition">
+                            <span class="material-symbols-outlined text-[20px]">add_circle</span>
+                            Yeni Deneyim
+                        </a>
+
+                        <a href="/Skill/CreateSkill"
+                           class="flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 dark:border-[#3b4d54]
+                                  bg-slate-50 dark:bg-[#0f1416] font-bold text-sm hover:opacity-90 transition">
+                            <span class="material-symbols-outlined text-[20px]">add_circle</span>
+                            Yeni Yetenek
+                        </a>
+
+                        <a href="/Testimonial/CreateTestimonial"
+                           class="flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 dark:border-[#3b4d54]
+                                  bg-slate-50 dark:bg-[#0f1416] font-bold text-sm hover:opacity-90 transition">
+                            <span class="material-symbols-outlined text-[20px]">add_circle</span>
+                            Yeni Referans
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

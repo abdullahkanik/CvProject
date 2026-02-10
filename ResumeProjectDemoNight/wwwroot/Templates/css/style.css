@@ -811,7 +811,7 @@ section {
 
 section.home {
   background: #353353;
-  padding: 0;
+  padding: 0 !important;
   height: 100vh;
   min-height: 100vh;
 }

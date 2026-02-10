@@ -7,17 +7,22 @@ namespace ResumeProjectDemoNight.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-R7AR1ND;initial catalog=Project1NightResumeDb;integrated security=true;trust server certificate=true");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-59CMCNP\\MSSQLSERVER02;initial catalog=Project1NightResumeDb;integrated security=true;trust server certificate=true");
         }
 
-        public DbSet<About> Abouts { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Experience> Experiences { get; set; }
-        public DbSet<Message> Messages { get; set; }
-        public DbSet<Portfolio> Portfolios { get; set; }
-        public DbSet<Service> Services { get; set; }
-        public DbSet<Testimonial> Testimonials { get; set; }
+		public DbSet<About> Abouts { get; set; }
+		public DbSet<Category> Categories { get; set; }
+		public DbSet<Experience> Experiences { get; set; }
+		public DbSet<Message> Messages { get; set; }
+		public DbSet<Portfolio> Portfolios { get; set; }
+		public DbSet<Service> Services { get; set; }
+		public DbSet<SocialMedia> SocialMedias { get; set; }
+		public DbSet<Skill> Skills { get; set; }
+		public DbSet<Dashboard> Dashboard { get; set; }
+		public DbSet<Testimonial> Testimonials { get; set; }
+		public DbSet<PortfolioCategory> PortfolioCategories { get; set; }
 
-    }
+
+	}
 }
 //Scope-->Kapsam
