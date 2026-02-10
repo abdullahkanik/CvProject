@@ -45,19 +45,9 @@ Amaç; gerçek bir projeye yakın mimari ile **MVC, EF Core ve Admin Panel** yap
 
 ---
 
-## ⚙️ Kurulum
-
-1. Repoyu klonlayın:
-```bash
-git clone https://github.com/abdullahkanik/CvProject.git
-
-
-
-
 ## 📸 Ekran Görüntüleri
 
 ## 🌐 Public (Vitrin) – Anasayfa
-
 ![Anasayfa 1](screenshots/anasayfa1.png)
 ![Anasayfa 2](screenshots/anasayfa2.png)
 ![Anasayfa 3](screenshots/anasayfa3.png)
@@ -68,48 +58,51 @@ git clone https://github.com/abdullahkanik/CvProject.git
 ---
 
 ## 🧩 Admin Panel – Deneyimler
-
 ![Deneyim Listesi](screenshots/deneyimlistesi.png)
 
 ---
 
 ## 🛠 Admin Panel – Hizmetler
-
 ![Hizmetler](screenshots/Hizmetlerim.png)
 
 ---
 
 ## 📊 Admin Panel – Mesaj İstatistikleri
-
 ![Mesaj İstatistik](screenshots/Mesajistatistik.png)
 
 ---
 
 ## 💬 Admin Panel – Mesaj Ekranı
-
 ![Mesaj Ekranı](screenshots/Mesajekrani.png)
 
 ---
 
 ## 📁 Admin Panel – Portfolyo
-
 ![Portfolyo](screenshots/PortfolioList.png)
 
 ---
 
 ## ⭐ Admin Panel – Referanslar
-
 ![Referanslar](screenshots/testimonial.png)
 
 ---
 
 ## ✏️ Admin Panel – Hakkımda Güncelleme
-
 ![Hakkımda](screenshots/UpdateAbout.png)
 
 ---
 
 ## 🧠 Admin Panel – Yetenekler
-
 ![Yetenekler](screenshots/YetenekListesi.png)
+
+
+
+## ⚙️ Kurulum
+
+1. Repoyu klonlayın:
+```bash
+git clone https://github.com/abdullahkanik/CvProject.git
+
+
+
 
