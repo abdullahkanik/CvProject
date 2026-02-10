@@ -1,0 +1,183 @@
+﻿@{
+    ViewData["Title"] = "Mesaj İstatistikleri";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+
+    // ViewBag değerleri null gelebilir diye güvenli alalım
+    int toplam = ViewBag.v1 != null ? (int)ViewBag.v1 : 0;
+    int okunmamis = ViewBag.v2 != null ? (int)ViewBag.v2 : 0;
+    int okunmus = ViewBag.v3 != null ? (int)ViewBag.v3 : 0;
+
+    // Oranlar
+    double oranOkunmus = toplam > 0 ? (okunmus * 100.0 / toplam) : 0;
+    double oranOkunmamis = toplam > 0 ? (okunmamis * 100.0 / toplam) : 0;
+
+    // Son mesaj id vs (senin v4)
+    var birNumaraliId = ViewBag.v4;
+}
+
+<div class="flex-1 overflow-y-auto p-8">
+    <div class="max-w-6xl mx-auto space-y-8">
+
+        <!-- Başlık -->
+        <div class="flex items-start justify-between">
+            <div>
+                <h1 class="text-3xl font-extrabold text-white tracking-tight">Mesaj İstatistikleri</h1>
+                <p class="text-slate-400 text-sm mt-2">
+                    Gelen kutunuzun genel durumunu buradan hızlıca görebilirsiniz.
+                </p>
+            </div>
+
+            <div class="flex gap-3">
+                <a href="/Message/Index"
+                   class="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all shadow-lg shadow-primary/20">
+                    <span class="material-symbols-outlined text-white" style="color:white; font-size:20px;">mail</span>
+                    Mesajlara Git
+                </a>
+
+                <a href="/Default/Index"
+                   target="_blank"
+                   class="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all">
+                    <span class="material-symbols-outlined text-white" style="color:white; font-size:20px;">open_in_new</span>
+                    Siteyi Aç
+                </a>
+            </div>
+        </div>
+
+        <!-- İstatistik Kartları -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+            <!-- Toplam -->
+            <div class="bg-card-dark rounded-xl border border-slate-800 p-6 shadow-2xl">
+                <div class="flex items-center justify-between">
+                    <p class="text-slate-400 text-sm font-semibold uppercase tracking-wider">Toplam Mesaj</p>
+                    <span class="material-symbols-outlined" style="color:#60a5fa;">all_inbox</span>
+                </div>
+                <div class="mt-4">
+                    <p class="text-4xl font-extrabold text-white">@toplam</p>
+                    <p class="text-slate-500 text-xs mt-2">Tüm gelen mesajların sayısı</p>
+                </div>
+            </div>
+
+            <!-- Okunmamış -->
+            <div class="bg-card-dark rounded-xl border border-slate-800 p-6 shadow-2xl">
+                <div class="flex items-center justify-between">
+                    <p class="text-slate-400 text-sm font-semibold uppercase tracking-wider">Okunmamış</p>
+                    <span class="material-symbols-outlined" style="color:#f97316;">mark_email_unread</span>
+                </div>
+                <div class="mt-4">
+                    <p class="text-4xl font-extrabold text-white">@okunmamis</p>
+                    <p class="text-slate-500 text-xs mt-2">Acil bakılması gereken mesajlar</p>
+                </div>
+            </div>
+
+            <!-- Okunmuş -->
+            <div class="bg-card-dark rounded-xl border border-slate-800 p-6 shadow-2xl">
+                <div class="flex items-center justify-between">
+                    <p class="text-slate-400 text-sm font-semibold uppercase tracking-wider">Okunmuş</p>
+                    <span class="material-symbols-outlined" style="color:#22c55e;">mark_email_read</span>
+                </div>
+                <div class="mt-4">
+                    <p class="text-4xl font-extrabold text-white">@okunmus</p>
+                    <p class="text-slate-500 text-xs mt-2">İşlenen / cevaplanmış mesajlar</p>
+                </div>
+            </div>
+
+            <!-- Bilgi -->
+            <div class="bg-card-dark rounded-xl border border-slate-800 p-6 shadow-2xl">
+                <div class="flex items-center justify-between">
+                    <p class="text-slate-400 text-sm font-semibold uppercase tracking-wider">1 Numaralı ID</p>
+                    <span class="material-symbols-outlined" style="color:#a78bfa;">tag</span>
+                </div>
+                <div class="mt-4">
+                    <p class="text-2xl font-extrabold text-white">@birNumaraliId</p>
+                    <p class="text-slate-500 text-xs mt-2">Debug / kontrol amaçlı alan</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Oranlar -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+            <!-- Okunmuş oran -->
+            <div class="bg-card-dark rounded-xl border border-slate-800 p-6 shadow-2xl">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-white font-bold text-lg">Okunmuş Oranı</h2>
+                    <span class="text-slate-400 text-sm font-semibold">@oranOkunmus.ToString("0.0")%</span>
+                </div>
+
+                <div class="mt-5">
+                    <div class="h-3 w-full bg-slate-800 rounded-full overflow-hidden">
+                        <div class="h-full bg-green-500 rounded-full" style="width:@oranOkunmus.ToString("0.0")%"></div>
+                    </div>
+                    <p class="text-slate-500 text-xs mt-3">
+                        Okunmuş mesajların toplam mesaja oranı.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Okunmamış oran -->
+            <div class="bg-card-dark rounded-xl border border-slate-800 p-6 shadow-2xl">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-white font-bold text-lg">Okunmamış Oranı</h2>
+                    <span class="text-slate-400 text-sm font-semibold">@oranOkunmamis.ToString("0.0")%</span>
+                </div>
+
+                <div class="mt-5">
+                    <div class="h-3 w-full bg-slate-800 rounded-full overflow-hidden">
+                        <div class="h-full bg-orange-500 rounded-full" style="width:@oranOkunmamis.ToString("0.0")%"></div>
+                    </div>
+                    <p class="text-slate-500 text-xs mt-3">
+                        Okunmamış mesajların toplam mesaja oranı.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Hızlı Aksiyonlar -->
+        <div class="bg-card-dark rounded-xl border border-slate-800 p-6 shadow-2xl">
+            <h2 class="text-white font-bold text-lg">Hızlı İşlemler</h2>
+            <p class="text-slate-400 text-sm mt-1">Yaygın admin işlemlerine hızlı erişim.</p>
+
+            <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <a href="/Message/Index"
+                   class="flex items-center justify-between gap-3 p-4 rounded-xl border border-slate-800 hover:border-primary/60 hover:bg-slate-900/40 transition-all">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined" style="color:#60a5fa;">inbox</span>
+                        <div>
+                            <p class="text-white font-bold">Gelen Kutusu</p>
+                            <p class="text-slate-500 text-xs">Mesajları görüntüle</p>
+                        </div>
+                    </div>
+                    <span class="material-symbols-outlined text-slate-500">chevron_right</span>
+                </a>
+
+                <a href="/Message/Index"
+                   class="flex items-center justify-between gap-3 p-4 rounded-xl border border-slate-800 hover:border-primary/60 hover:bg-slate-900/40 transition-all">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined" style="color:#f97316;">priority_high</span>
+                        <div>
+                            <p class="text-white font-bold">Okunmamışları Kontrol Et</p>
+                            <p class="text-slate-500 text-xs">Öncelikli mesajlar</p>
+                        </div>
+                    </div>
+                    <span class="material-symbols-outlined text-slate-500">chevron_right</span>
+                </a>
+
+                <a href="/Default/Index" target="_blank"
+                   class="flex items-center justify-between gap-3 p-4 rounded-xl border border-slate-800 hover:border-primary/60 hover:bg-slate-900/40 transition-all">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined" style="color:#a78bfa;">public</span>
+                        <div>
+                            <p class="text-white font-bold">Siteyi Görüntüle</p>
+                            <p class="text-slate-500 text-xs">Ön yüzü yeni sekmede aç</p>
+                        </div>
+                    </div>
+                    <span class="material-symbols-outlined text-slate-500">open_in_new</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>

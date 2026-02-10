@@ -1,0 +1,182 @@
+﻿@model List<ResumeProjectDemoNight.Entities.Portfolio>
+@{
+    var categories = ViewBag.Categories as List<ResumeProjectDemoNight.Entities.PortfolioCategory>;
+}
+
+<section id="portfolio">
+    <div class="container">
+
+        <div class="d-flex align-items-center justify-content-between flex-wrap">
+            <h2 class="section-title wow fadeInUp mb-3">Projelerim</h2>
+
+            <!-- Filtre butonları -->
+            <div class="portfolio-filters wow fadeInUp">
+                <button class="filter-btn active" data-filter="all">Tümü</button>
+
+                @foreach (var cat in categories)
+                {
+                    <button class="filter-btn" data-filter="@cat.PortfolioCategoryId">@cat.Name</button>
+                }
+            </div>
+        </div>
+
+        <div class="spacer" data-height="30"></div>
+
+        <style>
+            #portfolio .portfolio-filters {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+                margin-bottom: 10px;
+            }
+
+            #portfolio .filter-btn {
+                border: none;
+                padding: 10px 14px;
+                border-radius: 999px;
+                background: #f0f1ff;
+                color: #333;
+                font-weight: 600;
+                font-size: 13px;
+                cursor: pointer;
+                transition: .2s;
+            }
+
+                #portfolio .filter-btn.active {
+                    background: #6C6CE5;
+                    color: #fff;
+                }
+
+            #portfolio .portfolio-grid {
+                display: grid;
+                grid-template-columns: repeat(3,minmax(0,1fr));
+                gap: 28px;
+            }
+
+            #portfolio .portfolio-thumb {
+                width: 100%;
+                aspect-ratio: 16/10;
+                border-radius: 18px;
+                overflow: hidden;
+                background: #f5f6ff;
+                box-shadow: 0 10px 26px rgba(0,0,0,.08);
+                transition: transform .25s ease, box-shadow .25s ease;
+                display: block;
+            }
+
+                #portfolio .portfolio-thumb img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    display: block;
+                }
+
+                #portfolio .portfolio-thumb:hover {
+                    transform: translateY(-6px);
+                    box-shadow: 0 18px 40px rgba(0,0,0,.12);
+                }
+
+            #portfolio .portfolio-title {
+                margin-top: 10px;
+                font-size: 14px;
+                font-weight: 600;
+                color: #3b3b3b;
+                opacity: .9;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            @@media (max-width: 992px) {
+                #portfolio .portfolio-grid {
+                    grid-template-columns: repeat(2,minmax(0,1fr));
+                }
+            }
+
+            @@media (max-width: 576px) {
+                #portfolio .portfolio-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+
+        <!-- GRID -->
+        <div class="portfolio-grid">
+            @foreach (var item in Model)
+            {
+                <div class="portfolio-item wow fadeInUp" data-cat="@item.PortfolioCategoryId">
+                    <a class="portfolio-thumb portfolio-popup" href="@item.ImageUrl">
+                        <img src="@item.ImageUrl" alt="@item.ProjectTitle" />
+                    </a>
+                    <div class="portfolio-title">@item.ProjectTitle</div>
+                </div>
+            }
+        </div>
+
+    </div>
+
+    <!-- Popup (Lightbox) - önceki koddaki gibi kullanıyorsan aynen kalsın -->
+    <div id="portfolioLightbox" class="portfolio-lightbox" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,.85); justify-content:center; align-items:center; padding:20px;">
+        <span id="portfolioLightboxClose" style="position:absolute; top:18px; right:24px; font-size:40px; color:#fff; cursor:pointer;">&times;</span>
+        <img id="portfolioLightboxImg" style="max-width:92%; max-height:92%; border-radius:14px; box-shadow:0 20px 60px rgba(0,0,0,.5);" />
+    </div>
+
+    <script>
+        (function () {
+            // FILTER
+            const btns = document.querySelectorAll('#portfolio .filter-btn');
+            const items = document.querySelectorAll('#portfolio .portfolio-item');
+
+            btns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    btns.forEach(x => x.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const filter = this.getAttribute('data-filter'); // all ya da id
+
+                    items.forEach(card => {
+                        const cat = card.getAttribute('data-cat') || "";
+                        if (filter === 'all' || cat === filter) {
+                            card.style.display = '';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // LIGHTBOX
+            const lightbox = document.getElementById('portfolioLightbox');
+            const lightboxImg = document.getElementById('portfolioLightboxImg');
+            const closeBtn = document.getElementById('portfolioLightboxClose');
+
+            document.querySelectorAll('#portfolio .portfolio-popup').forEach(a => {
+                a.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    lightboxImg.src = this.getAttribute('href');
+                    lightbox.style.display = 'flex';
+                });
+            });
+
+            closeBtn.addEventListener('click', function () {
+                lightbox.style.display = 'none';
+                lightboxImg.src = '';
+            });
+
+            lightbox.addEventListener('click', function (e) {
+                if (e.target === lightbox) {
+                    lightbox.style.display = 'none';
+                    lightboxImg.src = '';
+                }
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && lightbox.style.display === 'flex') {
+                    lightbox.style.display = 'none';
+                    lightboxImg.src = '';
+                }
+            });
+        })();
+    </script>
+
+</section>

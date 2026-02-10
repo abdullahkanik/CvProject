@@ -1,0 +1,53 @@
+﻿﻿
+
+<div class="container">
+
+	<!-- section title -->
+	<h2 class="section-title wow fadeInUp">Bana Yazın</h2>
+
+	<div class="spacer" data-height="60"></div>
+
+	<div class="row">
+		<div class="col-md-4">
+			<div class="contact-info">
+				<h3 class="wow fadeInUp">Her konuda konuşabiliriz!</h3>
+				<p class="wow fadeInUp">Form doldurmayı sevmiyor musun? Bana direkt <a href="mailto:name@example.com">e-posta</a> gönder. . 👋</p>
+			</div>
+		</div>
+		<div class="col-md-8">
+			<form id="contact-form" class="contact-form mt-6" method="post" action="form/contact.php">
+				<div class="messages"></div>
+				<div class="row">
+					<div class="column col-md-6">
+						<div class="form-group">
+							<input type="text" class="form-control" name="InputName" id="InputName" placeholder="Adınız" required="required">
+							<div class="help-block with-errors"></div>
+						</div>
+					</div>
+					<div class="column col-md-6">
+						<div class="form-group">
+							<input type="email" class="form-control" id="InputEmail" name="InputEmail" placeholder="Mail Adresiniz" required="required">
+							<div class="help-block with-errors"></div>
+						</div>
+					</div>
+					<div class="column col-md-12">
+						<div class="form-group">
+							<input type="text" class="form-control" id="InputSubject" name="InputSubject" placeholder="Konu" required="required">
+							<div class="help-block with-errors"></div>
+						</div>
+					</div>
+					<div class="column col-md-12">
+						<div class="form-group">
+							<textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" placeholder="Mesaj" required="required"></textarea>
+							<div class="help-block with-errors"></div>
+						</div>
+					</div>
+				</div>
+				<button type="submit" name="submit" id="submit" value="Submit" class="btn btn-default">Mesaj Gönder</button>
+			</form>
+		</div>
+	</div>
+</div>
+</section>
+
+<div class="spacer" data-height="96"></div>
