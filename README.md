@@ -73,7 +73,7 @@ Amaç; gerçek bir projeye yakın mimari ile **MVC, EF Core ve Admin Panel** yap
 ---
 
 ## 💬 Admin Panel – Mesaj Ekranı
-![Mesaj Ekranı](screenshots/Mesajekrani.png)
+![Mesaj Ekranı](screenshots/Mesajsekmesi.png)
 
 ---
 
@@ -105,10 +105,13 @@ Bu proje, M&Y Yazılım Eğitim Akademi Danışmanlık tarafından sağlanan eğ
 1. Repoyu klonlayın:
 ```bash
 1- git clone https://github.com/abdullahkanik/CvProject.git
+```
 2- Projeyi Açın: ResumeProjectDemoNight.sln dosyasını Visual Studio ile açın.
 3- Veritabanı Bağlantısını Yapılandırın: appsettings.json dosyasındaki ConnectionStrings bölümünü kendi SQL Server bilgilerinize göre güncelleyin.
 4- Migrationları Uygulayın (Veritabanını Oluşturun): Visual Studio'da Package Manager Console'u açın ve şu komutu çalıştırın:
+```
 update-database
+```
 5- Projeyi Başlatın: Ctrl + F5 veya F5 tuşuna basarak projeyi tarayıcıda çalıştırın.
 
 
