@@ -1,47 +1,81 @@
-# CvProject – Kişisel Portfolyo Web Uygulaması
+# 🚀 CvProject – Kişisel Portfolyo Web Uygulaması
 
-Bu proje, **ASP.NET Core MVC** kullanılarak geliştirilmiş,  
-**admin panelli ve veritabanı destekli** bir kişisel portfolyo web uygulamasıdır.
-
-Amaç; gerçek bir projeye yakın mimari ile **MVC, EF Core ve Admin Panel** yapısını öğrenmek ve uygulamaktır.
+Bu proje, **ASP.NET Core MVC** kullanılarak geliştirilmiş, **admin panelli ve veritabanı destekli** bir kişisel portfolyo web uygulamasıdır.  
+Amaç, gerçek bir projeye yakın mimari ile **MVC, Entity Framework Core ve Admin Panel** yapısını öğrenmek ve uygulamaktır.
 
 ---
 
-## 🚀 Proje Amacı
-- ASP.NET Core MVC mimarisini öğrenmek
-- Entity Framework Core (Code First) ile CRUD işlemleri yapmak
-- Admin Panel + Public (Vitrin) yapısını gerçek projeye yakın kurmak
-- Katmanlı ve okunabilir bir proje yapısı oluşturmak
+## 🎯 Proje Amacı
+
+Bu projenin temel amacı;
+
+- ASP.NET Core MVC mimarisini gerçek bir senaryo üzerinden öğrenmek  
+- Entity Framework Core (Code First) yaklaşımı ile veritabanı işlemlerini yönetmek  
+- Admin Panel + Public (Vitrin) yapısını gerçek projelere uygun şekilde kurgulamak  
+- Katmanlı, okunabilir ve geliştirilebilir bir proje yapısı oluşturmaktır  
+
+Proje boyunca hem **backend geliştirme mantığı** hem de **frontend entegrasyonu** bir arada ele alınmıştır.
 
 ---
 
-## 🛠 Kullanılan Teknolojiler
-- ASP.NET Core MVC
-- C#
-- Entity Framework Core (Code First)
-- MS SQL Server
-- HTML, CSS
-- Bootstrap (Public)
-- TailwindCSS (Admin Panel)
+## 🧩 Proje Hakkında
+
+Bu proje, bir yazılım geliştiricinin veya profesyonelin;
+
+- Kendisini tanıtabileceği  
+- Yeteneklerini ve deneyimlerini sergileyebileceği  
+- Tamamladığı projeleri görsel olarak sunabileceği  
+- Ziyaretçilerden mesaj alabileceği  
+
+**tamamen dinamik bir kişisel portfolyo web uygulamasıdır.**
+
+Ziyaretçiler siteyi **Public (Vitrin)** alanından görüntülerken,  
+site sahibi **Admin Panel** üzerinden tüm içerikleri **kod bilgisine ihtiyaç duymadan** yönetebilir.
 
 ---
 
-## ✨ Özellikler
+## 🛠️ Kullanılan Teknolojiler ve Araçlar
 
-### 🔹 Public (Vitrin)
-- Ana Sayfa
-- Hakkımda
-- Deneyimler
-- Hizmetler
-- Projeler
-- İletişim Formu
+- **Backend:** C#, ASP.NET Core MVC  
+- **Veritabanı:** MS SQL Server  
+- **ORM:** Entity Framework Core (Code First yaklaşımı)  
+- **Frontend (Public):** HTML5, CSS3, Bootstrap, JavaScript (Hazır template entegrasyonu)  
+- **Frontend (Admin):** Razor Views, Admin Template  
+- **Mimari:** MVC (Model – View – Controller)  
+- **Diğer:** ViewComponents, Migrations, Git & GitHub  
 
-### 🔹 Admin Panel
-- Dashboard (istatistikler)
-- Deneyim CRUD
-- Proje CRUD
-- Mesaj yönetimi
-- İçerik güncelleme
+---
+
+## 📦 Özellikler ve Modüller
+
+Proje iki ana bölümden oluşmaktadır:
+
+### 👤 Kullanıcı Arayüzü (Vitrin – Public)
+
+- Ana Sayfa: Karşılama ekranı ve özet bilgiler  
+- Hakkımda: Kişisel bilgiler ve biyografi  
+- Yetenekler (Skills): Teknik yetkinliklerin yüzdelik gösterimi  
+- Deneyimler: İş ve eğitim geçmişi (zaman çizelgesi)  
+- Hizmetler: Sunulan hizmetlerin listelenmesi  
+- Portfolyo: Tamamlanan projelerin görsellerle sergilenmesi  
+- Referanslar (Testimonials): Müşteri veya iş arkadaşlarından yorumlar  
+- İletişim: Ziyaretçilerin mesaj gönderebildiği iletişim formu  
+
+---
+
+### 🛠️ Yönetim Paneli (Admin Dashboard)
+
+Admin panel üzerinden aşağıdaki modüller için **CRUD (Create, Read, Update, Delete)** işlemleri yapılabilmektedir:
+
+- Dashboard (İstatistikler)  
+- Hakkımda içeriği yönetimi  
+- Deneyim ekleme / düzenleme  
+- Yetenek (Skill) yönetimi  
+- Hizmet yönetimi  
+- Portfolyo projeleri yönetimi  
+- Referans (Testimonial) yönetimi  
+- Sosyal medya hesapları yönetimi  
+- Gelen mesajları okuma ve yönetme  
 
 ---
 
