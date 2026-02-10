@@ -97,7 +97,8 @@ Amaç; gerçek bir projeye yakın mimari ile **MVC, EF Core ve Admin Panel** yap
 
 Eğitim & Teşekkür
 --------------------------
-Bu proje, M&Y Yazılım Eğitim Akademi Danışmanlık tarafından sağlanan eğitim kapsamında geliştirilmiştir. Değerli katkıları ve öğretileri için Murat Yücedağ hocama teşekkür ederim.
+Bu proje, M&Y Yazılım Eğitim Akademi Danışmanlık tarafından sağlanan eğitim kapsamında geliştirilmiştir. 
+Değerli katkıları ve öğretileri için Murat Yücedağ hocama teşekkür ederim.
 
 
 ## ⚙️ Kurulum
